@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+    <header>
+        <div class="overskrift">
+            SKAT
+        </div>
+
+        <div class="menu-group" style="width:100%">
+            <button style="width:15%">Forside</button>
+            <button style="width:15%">Juster Skat</button>
+            <button style="width:15%">Årsopgørelse</button>
+            <button style="width:15%">Forskudsopgørelse</button>
+        </div>
+    </header>
+
+    <div class="wrapper">
+        <div class="finanslov">
+            <h2>Finanslov</h2>
+            <div class="år">
+                <br>
+
+                <div class="diagram">
+                    <canvas id="myChart" width="300" height="300"></canvas>
+                    <script src="chart.js/dist/Chart.js"></script>
+                    <script>
+                        let ctx = document.getElementById('myChart');
+
+                            var myPieChart = new Chart(ctx, {
+                                type: 'pie',
+                                data: {
+                                    datasets: [{
+                                        data:    [44, 15, 14, 13, 6, 2, 2, 3, 1, 0],
+                                        backgroundColor: [
+                                            'rgba(255, 255, 0, 0.5)',
+                                            'rgba(230, 25, 75, 0.5)',
+                                            'rgba(245, 130, 48, 0.5)',
+                                            'rgba(210, 245, 60, 0.5)',
+                                            'rgba(60, 180, 75, 0.5)',
+                                            'rgba(70, 240, 240, 0.5)',
+                                            'rgba(0, 130, 200, 0.5)',
+                                            'rgba(145, 30, 180, 0.5)',
+                                            'rgba(240, 50, 230, 0.5)',
+                                            'rgba(175, 175, 175, 0.5)'
+                                        ]
+                                    }],
+                                    labels: [
+                                        'Social Beskyttelse',
+                                        'Sundhedsvæsen',
+                                        'Undervisning',
+                                        'Generelle Offentlige Tjenester',
+                                        'Økonomiske Anliggender',
+                                        'Offentlig Orden og Sikkerhed',
+                                        'Forsvar',
+                                        'Fritid, Kultur og Religion',
+                                        'Miljø',
+                                        'Overskud'
+                                    ]
+                                },
+                                options: {
+                                    legend: {
+                                        display: false
+                                    },
+                                    ticks: {
+                                        max: 100,
+                                        min: 0,
+                                        stepSize: 0.5,
+                                    },
+                                    cutoutPercentage: 50,
+                                }
+                            });
+                    </script>
+                </div>
+
+                <div class="empty"></div>
+
+                <div class="tekst">
+                    <span class="tekst">Da din årlige indkomst er på:</span>
+                    <span id="indkomst" class="tekst">500000</span> <span class="tekst">kr. er din skatteprocent på</span>
+                    <span id="skat" class="tekst">41,5%</span> <span>%. <br> Det vil sige at </span><span id="skatIndkomst"></span>
+                    <span>kr. går til skatter.</span>
+
+                </div>
+
+                <script>
+                    Skat();
+
+                    function Skat(){
+                        let indkomst = [100000, 150000, 200000, 250000, 300000, 350000, 400000, 450000, 500000, 550000, 600000, 650000, 700000, 750000, 800000, 850000, 900000, 950000];
+                        let skatter = [41.5, 46, 48.3, 49.7, 50.6, 51.3, 52, 52.7, 53.1, 54.2, 55.3, 56.2, 57, 57.7, 58.3, 58.8, 59.3, 59.7];
+
+                        let currentIndkomst = document.getElementById("indkomst").innerText;
+                        for(let i in indkomst){
+                            if(currentIndkomst <= indkomst[i]){
+                                var skatteprocent = skatter[i];
+                                document.getElementById("skat").innerText = skatter[i];
+                                break;
+                            }
+                            else if(currentIndkomst > indkomst[17]){
+                                skatteprocent = skatter[17];
+                                document.getElementById("skat").innerText = skatter[17];
+                                break;
+                            }
+                        }
+
+                        let procent = (currentIndkomst / 100);
+                        let skatIndkomst = Math.round((skatteprocent*procent)*100)/100;
+
+                        document.getElementById("skatIndkomst").innerText = skatIndkomst;
+
+                    }
+
+                </script>
+
+                <div class="empty"></div>
+
+                <div class="category">
+                    <h2 style="font-weight: bold">Social Beskyttelse</h2>
+
+                    <div class="sliderWrapper">
+                        <input type="range" min="1" max="100" value="44" class="slider" id="SocialBeskyttelse">
+                    </div>
+
+                    <div class="skatDel">
+                        <span>Du kommer til at betale </span><span id="SocialB"></span><span> kr. til Social Beskyttelse</span>
+                    </div>
+
+                </div>
+
+                <script>
+                    let procent = document.getElementById("SocialBeskyttelse").value;
+                    let skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
+                    console.log(skatIndkomst)
+                    let del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
+                    document.getElementById("SocialB").innerHTML = del;
+
+                    document.getElementById("SocialBeskyttelse").addEventListener("click", function(){
+                        let procent = document.getElementById("SocialBeskyttelse").value;
+                        let skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
+                        let del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
+                        document.getElementById("SocialB").innerHTML = del;
+                    });
+
+                </script>
+
+                <div class="empty"></div>
+
+                <div class="category">
+                    <h2 style="font-weight: bold">Sundhedsvæsen</h2>
+
+                    <div class="sliderWrapper">
+                        <input type="range" min="1" max="100" value="15" class="slider" id="Sundhedsvæsen">
+                    </div>
+
+                    <div class="skatDel">
+                        <span>Du kommer til at betale </span><span id="SundhedsvæsenSkat"></span><span> kr. til Sundhedsvæsenet</span>
+                    </div>
+                </div>
+
+                <script>
+                    procent = document.getElementById("Sundhedsvæsen").value;
+                    skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
+                    console.log(skatIndkomst)
+                    del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
+                    document.getElementById("SundhedsvæsenSkat").innerHTML = del;
+
+                    document.getElementById("Sundhedsvæsen").addEventListener("click", function(){
+                        let procent = document.getElementById("Sundhedsvæsen").value;
+                        let skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
+                        let del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
+                        document.getElementById("SundhedsvæsenSkat").innerHTML = del;
+                    });
+
+                </script>
+
+                <div class="empty"></div>
+
+                <div class="category">
+                    <h2 style="font-weight: bold">Undervisning</h2>
+
+                    <div class="sliderWrapper">
+                        <input type="range" min="1" max="100" value="14" class="slider" id="Undervisning">
+                    </div>
+
+                    <div class="skatDel">
+                        <span>Du kommer til at betale </span><span id="UndervisningSkat"></span><span> kr. til Undervisning</span>
+                    </div>
+                </div>
+
+                <script>
+                    procent = document.getElementById("Undervisning").value;
+                    skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
+                    console.log(skatIndkomst)
+                    del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
+                    document.getElementById("UndervisningSkat").innerHTML = del;
+
+                    document.getElementById("Undervisning").addEventListener("click", function(){
+                        let procent = document.getElementById("Undervisning").value;
+                        let skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
+                        let del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
+                        document.getElementById("UndervisningSkat").innerHTML = del;
+                    });
+
+                </script>
+
+                <div class="empty"></div>
+
+                <div class="category">
+                    <h2 style="font-weight: bold">Generelle Offentlige Tjenester</h2>
+
+                    <div class="sliderWrapper">
+                        <input type="range" min="1" max="100" value="13" class="slider" id="GenerelleOffentligeTjenester">
+                    </div>
+
+                    <div class="skatDel">
+                        <span>Du kommer til at betale </span><span id="GenerelleOffentligeTjenesterSkat"></span><span> kr. til Generelle Offentlige Tjenester</span>
+                    </div>
+                </div>
+
+                <script>
+                    procent = document.getElementById("GenerelleOffentligeTjenester").value;
+                    skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
+                    console.log(skatIndkomst)
+                    del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
+                    document.getElementById("GenerelleOffentligeTjenesterSkat").innerHTML = del;
+
+                    document.getElementById("GenerelleOffentligeTjenester").addEventListener("click", function(){
+                        let procent = document.getElementById("GenerelleOffentligeTjenester").value;
+                        let skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
+                        let del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
+                        document.getElementById("GenerelleOffentligeTjenesterSkat").innerHTML = del;
+                    });
+
+                </script>
+
+                <div class="empty"></div>
+
+                <div class="category">
+                    <h2 style="font-weight: bold">Økonomiske Anliggender</h2>
+
+                    <div class="sliderWrapper">
+                        <input type="range" min="1" max="100" value="6" class="slider" id="ØkonomiskeAnliggender">
+                    </div>
+
+                    <div class="skatDel">
+                        <span>Du kommer til at betale </span><span id="ØkonomiskeAnliggenderSkat"></span><span> kr. til Økonomiske Anliggender</span>
+                    </div>
+                </div>
+
+                <script>
+                    procent = document.getElementById("ØkonomiskeAnliggender").value;
+                    skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
+                    console.log(skatIndkomst)
+                    del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
+                    document.getElementById("ØkonomiskeAnliggenderSkat").innerHTML = del;
+
+                    document.getElementById("ØkonomiskeAnliggender").addEventListener("click", function(){
+                        let procent = document.getElementById("ØkonomiskeAnliggender").value;
+                        let skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
+                        let del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
+                        document.getElementById("ØkonomiskeAnliggenderSkat").innerHTML = del;
+                    });
+
+                </script>
+
+                <div class="empty"></div>
+
+                <div class="category">
+                    <h2 style="font-weight: bold">Offentlig Orden og Sikkerhed</h2>
+
+                    <div class="sliderWrapper">
+                        <input type="range" min="1" max="100" value="2" class="slider" id="OffentligOrdenOgSikkerhed">
+                    </div>
+
+                    <div class="skatDel">
+                        <span>Du kommer til at betale </span><span id="OffentligOrdenOgSikkerhedSkat"></span><span> kr. til Offentlig Orden og Sikkerhed</span>
+                    </div>
+                </div>
+
+                <script>
+                    procent = document.getElementById("OffentligOrdenOgSikkerhed").value;
+                    skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
+                    console.log(skatIndkomst)
+                    del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
+                    document.getElementById("OffentligOrdenOgSikkerhedSkat").innerHTML = del;
+
+                    document.getElementById("OffentligOrdenOgSikkerhed").addEventListener("click", function(){
+                        let procent = document.getElementById("OffentligOrdenOgSikkerhed").value;
+                        let skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
+                        let del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
+                        document.getElementById("OffentligOrdenOgSikkerhedSkat").innerHTML = del;
+                    });
+
+                </script>
+
+                <div class="empty"></div>
+
+                <div class="category">
+                    <h2 style="font-weight: bold">Forsvar</h2>
+
+                    <div class="sliderWrapper">
+                        <input type="range" min="1" max="100" value="2" class="slider" id="Forsvar">
+                    </div>
+
+                    <div class="skatDel">
+                        <span>Du kommer til at betale </span><span id="ForsvarSkat"></span><span> kr. til Forsvar</span>
+                    </div>
+                </div>
+
+                <script>
+                    procent = document.getElementById("Forsvar").value;
+                    skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
+                    console.log(skatIndkomst)
+                    del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
+                    document.getElementById("ForsvarSkat").innerHTML = del;
+
+                    document.getElementById("Forsvar").addEventListener("click", function(){
+                        let procent = document.getElementById("Forsvar").value;
+                        let skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
+                        let del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
+                        document.getElementById("ForsvarSkat").innerHTML = del;
+                    });
+
+                </script>
+
+                <div class="empty"></div>
+
+                <div class="category">
+                    <h2 style="font-weight: bold">Fritid, Kultur & Religion</h2>
+
+                    <div class="sliderWrapper">
+                        <input type="range" min="1" max="100" value="3" class="slider" id="FritidKulturOgReligion">
+                    </div>
+
+                    <div class="skatDel">
+                        <span>Du kommer til at betale </span><span id="FritidKulturOgReligionSkat"></span><span> kr. til Fritid, Kultur og Religion</span>
+                    </div>
+                </div>
+
+                <script>
+                    procent = document.getElementById("FritidKulturOgReligion").value;
+                    skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
+                    console.log(skatIndkomst)
+                    del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
+                    document.getElementById("FritidKulturOgReligionSkat").innerHTML = del;
+
+                    document.getElementById("FritidKulturOgReligion").addEventListener("click", function(){
+                        let procent = document.getElementById("FritidKulturOgReligion").value;
+                        let skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
+                        let del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
+                        document.getElementById("FritidKulturOgReligionSkat").innerHTML = del;
+                    });
+
+                </script>
+
+                <div class="empty"></div>
+
+                <div class="category">
+                    <h2 style="font-weight: bold">Miljø</h2>
+
+                    <div class="sliderWrapper">
+                        <input type="range" min="1" max="100" value="1" class="slider" id="Miljø">
+                    </div>
+
+                    <div class="skatDel">
+                        <span>Du kommer til at betale </span><span id="MiljøSkat"></span><span> kr. til Miljø</span>
+                    </div>
+                </div>
+
+                <script>
+                    procent = document.getElementById("Miljø").value;
+                    skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
+                    console.log(skatIndkomst)
+                    del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
+                    document.getElementById("MiljøSkat").innerHTML = del;
+
+                    document.getElementById("Miljø").addEventListener("click", function(){
+                        let procent = document.getElementById("Miljø").value;
+                        let skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
+                        let del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
+                        document.getElementById("MiljøSkat").innerHTML = del;
+                    });
+
+                </script>
+
+
+
+                <script>
+
+                    let maxTotal = 100,
+                        inputs = [].slice.call(document.getElementsByTagName('input')),
+                        getTotal = function(){
+                            let totalValue = 0;
+                            inputs.forEach( function(input){
+                                console.log(input);
+                                totalValue += parseInt(input.value, 10);
+                            });
+                            console.log(totalValue);
+                            return totalValue;
+                        },
+                        maxReached = function(e){
+                            let sum = getTotal(), target;
+                            if(sum > maxTotal){
+                                target = e.target;
+                                target.value = target.value - (sum - maxTotal);
+                                e.preventDefault();
+                                return false;
+                            }
+                            //e.addEventListener('mouseout', cancelTip);
+                            let overskud = 100 - sum;
+                            console.log(overskud);
+
+                            myPieChart.chart.chart.data.datasets[0].data[0] = parseInt(document.getElementById("SocialBeskyttelse").value);
+                            myPieChart.chart.chart.data.datasets[0].data[1] = parseInt(document.getElementById("Sundhedsvæsen").value);
+                            myPieChart.chart.chart.data.datasets[0].data[2] = parseInt(document.getElementById("Undervisning").value);
+                            myPieChart.chart.chart.data.datasets[0].data[3] = parseInt(document.getElementById("GenerelleOffentligeTjenester").value);
+                            myPieChart.chart.chart.data.datasets[0].data[4] = parseInt(document.getElementById("ØkonomiskeAnliggender").value);
+                            myPieChart.chart.chart.data.datasets[0].data[5] = parseInt(document.getElementById("OffentligOrdenOgSikkerhed").value);
+                            myPieChart.chart.chart.data.datasets[0].data[6] = parseInt(document.getElementById("Forsvar").value);
+                            myPieChart.chart.chart.data.datasets[0].data[7] = parseInt(document.getElementById("FritidKulturOgReligion").value);
+                            myPieChart.chart.chart.data.datasets[0].data[8] = parseInt(document.getElementById("Miljø").value);
+                            myPieChart.chart.chart.data.datasets[0].data[9] = overskud;
+                            myPieChart.update();
+                            return true;
+                        };
+
+                    inputs.forEach( function(input){
+                        input.addEventListener('input', maxReached );
+                    });
+                </script>
+
+                    <script>
+                        function myFunction(){
+
+                        }
+
+
+
+                        function updateConfigByMutating(sliderLabel) {
+                        }
+                        /*
+                            let currentSliderValue = parseInt(document.getElementById("myRange").value);
+                            let chart = document.getElementById("myChart");
+
+                            console.log(myPieChart.chart.chart.data);
+
+                            let totalValue = 0;
+                            for(let i in myPieChart.chart.chart.data.datasets[0].data){
+                                let data = parseInt(myPieChart.chart.data.datasets[0].data[i]);
+                                if(sliderLabel === myPieChart.chart.data.labels[i]){
+                                    continue;
+                                }
+                                totalValue = totalValue + data;
+                            }
+
+                            if(currentSliderValue + totalValue > 100){
+                                console.log("Value Too High!");
+                                document.getElementById("myRange").disabled = true;
+                            }
+
+                            //myPieChart.update();
+
+
+
+
+
+
+
+
+
+
+                            /*
+                            let earlierSliderValue = myPieChart.chart.data.datasets[0].data[0];
+                            let totalValue = currentSliderValue;
+
+                            console.log("sliderValue: " + currentSliderValue);
+
+                            while(totalValue < 100){
+                                for(let i in myPieChart.chart.data.datasets[0].data){
+                                    let data = parseInt(myPieChart.chart.data.datasets[0].data[i]);
+                                    console.log("data: " + data);
+                                    let procentMod = 100;
+                                    let procent = 0;
+                                    while(procent === 0){
+                                        console.log("procent: " + procent + " // data: " + data + " // procentMod: " + procentMod);
+                                        procent = (data / procentMod);
+                                        procentMod--;
+                                    }
+                                    console.log("procent: " + procent);
+
+                                    if(myPieChart.chart.data.labels[i] === "Social Beskyttelse"){
+                                        myPieChart.chart.data.datasets[0].data[i] = currentSliderValue;
+                                    }else{
+                                        if(earlierSliderValue < currentSliderValue){
+                                            console.log("Decreasing other Values...");
+                                            data = data + procent;
+                                            myPieChart.chart.data.datasets[0].data[i] = data;
+                                        }else if(earlierSliderValue > currentSliderValue){
+                                            console.log("Increasing other Values...");
+                                            data = data - procent;
+                                            myPieChart.chart.data.datasets[0].data[i] = data;
+                                        }else{
+                                            console.log("Values are the same...");
+                                        }
+                                        console.log("data: " + data);
+
+                                        totalValue = totalValue + data;
+
+                                        if(totalValue > 100){
+                                            totalValue = totalValue - data;
+                                            break;
+                                        }else{
+                                            myPieChart.update();
+                                        }
+                                    }
+                                }
+                            }
+                        }*/
+
+                    </script>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
