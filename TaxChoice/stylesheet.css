@@ -1,4 +1,23 @@
-#tekst {
+#infotekst{
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-size: 20px;
+    line-height: 25px;
+    text-align: left;
+}
+
+.left-div {
+    float: left;
+    width: 50%;
+    height: 400px;
+    margin-right: 8px;
+    margin-left: 15px;
+}
+.right-div {
+    margin-left: 108px;
+}​
+
+.tekst {
+    top: 100px;
     display: inline;
     white-space: nowrap;
 }
@@ -9,24 +28,73 @@
 
 .overskrift{
     width: 100%;
-    height: 50px;
-    background-color: yellow;
+    height: 90.99px;
+    background-color: #14143c;
+    font-family: 'Open Sans',Arial,sans-serif;
+    color: white;
+    font-weight: bold;
+    font-size: 25px;
+    position: relative;
+    display: inline-block;
+    text-align: center;
+}
+
+.h1{
+    font-family: 'Open Sans',Arial,sans-serif;
+    display: inline-block;
+    margin: auto;
+}
+
+#årtal{
+    position: relative;
+    top: 70px;
+    width: 80px;
+    height: 40px;
+    background-color: #f5f5f5;
+    display:block;
+    text-align: center;
+}
+
+#idag{
+    position: relative;
+    top:10px;
+    font-weight: bold;
+    font-family: 'Open Sans',Arial,sans-serif;
+}
+
+hr{
+    stroke: #4CAF50;
+    display: block;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 0.2px;
 }
 
 .menu-group{
     width: 100%;
-    height: 40px;
-    background-color: darkseagreen;
+    height: 56.8px;
+    background-color: #14143c;
 }
 
 .menu-group button{
     width: 100%;
     height: 40px;
-    background-color: darkseagreen;
-    border: 1px solid white;
-    padding: 10px 24px;
+    background-color: #14143c;
+    color: white;
+    font-size: 16px;
+    border: #14143c;
+    padding: 10px 15px;
     cursor: pointer;
     float: left;
+    font-family: 'Open Sans',Arial,sans-serif;
+    display: block;
+    position: relative;
+    padding-bottom: 1.8rem;
+    padding-left: .9em;
+    padding-top: 1.7rem;
 }
 
 .-group button:not(:last-child) {
@@ -42,36 +110,57 @@
 
 /* Add a background color on hover */
 .menu-group button:hover {
-    background-color: darkslategrey;
+    background-color: #464665;
 }
 
 .wrapper{
     text-align:center;
-}
-
-.finanslov{
     border-radius: 25px;
-    position: relative; top: 50px;
-    width: 80%;
-    display:inline-block;
-    background-color: darkgrey;
-}
-
-.finanslov h2{
-    font-family: Arial, serif;
-    position: absolute; left: 25px;
-}
-
-.år{
-    position: relative; top: 100px;
-    width: 100%;
-    height: 2000px;
+    position: relative;
+    top: 50px;
+    left: 1%;
+    width: 98%;
+    height: 1590px;
     display:inline-block;
     background-color: lightgrey;
 }
 
+.finanslov{
+    border-radius: 25px;
+    position: relative;
+    top: 2px;
+    height: 99.5%;
+    width: 99.6%;
+    display:inline-block;
+    background-color: #e9ecf7;
+}
+
+.finanslov h2{
+    font-family: 'Open Sans',Arial,sans-serif;
+    position: absolute; left: 25px;
+}
+
+.år{
+
+    position: relative; top: 70px;
+    width: 100%;
+    height: 92%;
+    display:inline-block;
+    background-color: #f5f5f5;
+}
+
+#bund{
+    border-radius: 25px;
+    position: relative;
+    background-color: #f5f5f5;
+    alignment: bottom;
+    width: 100%;
+    top: 41px;
+    height: 50px;
+}
+
 .diagram{
-    width: 33%;
+    width: 25%;
     display:inline-block;
 }
 
@@ -103,7 +192,7 @@ h2{
     appearance: none;
     width: 75%; /* Full-width */
     height: 25px; /* Specified height */
-    background: darkgrey; /* Grey background */
+    background: rgba(200, 200, 200, 5); /* Grey background */
     outline: none; /* Remove outline */
     opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
     -webkit-transition: .2s; /* 0.2 seconds transition on hover */
@@ -174,4 +263,13 @@ input[type=submit]:hover {
 .kaskade {
     position: absolute;
     right: 500px;
+}
+
+#fod{
+    position: relative;
+    top: 150px;
+    background-color: #14143c;
+    height: 200px;
+    width: 100%;
+    color: darkblue;
 }
