@@ -12,7 +12,18 @@
     margin-right: 8px;
     margin-left: 15px;
 }
+
+#stickyContainer{
+    position: absolute;
+    width: 50%;
+    height: 90%;
+    left: 50%;
+}
+
 .right-div {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 100px;
     margin-left: 108px;
 }​
 
@@ -120,7 +131,7 @@ hr{
     top: 50px;
     left: 1%;
     width: 98%;
-    height: 1590px;
+    height: 110%;
     display:inline-block;
     background-color: lightgrey;
 }
@@ -142,9 +153,9 @@ hr{
 
 .år{
 
-    position: relative; top: 70px;
-    width: 100%;
-    height: 92%;
+    position: relative; top: 50px;
+    width: 97%;
+    height: 50%;
     display:inline-block;
     background-color: #f5f5f5;
 }
@@ -154,14 +165,18 @@ hr{
     position: relative;
     background-color: #f5f5f5;
     alignment: bottom;
-    width: 100%;
-    top: 41px;
+    width: 103%;
     height: 50px;
+    top: 15px;
+    right: 40px;
 }
 
 .diagram{
-    width: 25%;
+    position: -webkit-sticky;
+    position: sticky;
+    width: 50%;
     display:inline-block;
+    top: 100px;
 }
 
 h2{
@@ -175,7 +190,8 @@ h2{
 .skatDel{
     position: relative;
     display: block;
-    top: 50px;
+    top: 55px;
+    font-family: 'Open Sans', Arial, sans-serif;
 }
 
 .sliderWrapper{
@@ -190,7 +206,7 @@ h2{
     border-radius: 15px;
     -webkit-appearance: none;  /* Override default CSS styles */
     appearance: none;
-    width: 75%; /* Full-width */
+    width: 90%; /* Full-width */
     height: 25px; /* Specified height */
     background: rgba(200, 200, 200, 5); /* Grey background */
     outline: none; /* Remove outline */
@@ -260,9 +276,14 @@ input[type=submit]:hover {
     width: 80%;
 }
 
-.kaskade {
-    position: absolute;
-    right: 500px;
+#kaskade {
+    position: relative;
+    text-align: right;
+    right: 55px;
+    top: 100px;
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-weight: bold;
+    font-size: 25px;
 }
 
 #fod{
@@ -272,4 +293,44 @@ input[type=submit]:hover {
     height: 200px;
     width: 100%;
     color: darkblue;
+}
+
+/* Style the button that is used to open and close the collapsible content */
+/* some simple demo styles for all collapsibles on this page */
+/* source: http://www.ehow.com/how_12214447_make-collapsing-lists-java.html */
+/* Style the buttons that are used to open and close the accordion panel */
+
+.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 55%;
+    position: relative;
+    left: -275px;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .accordion:hover {
+    background-color: #ccc;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.panel {
+    padding: 0 18px;
+    background-color: white;
+    display: none;
+    overflow: hidden;
+    position: relative;
+    left: 13px;
+    width: 52.1%;
+}
+
+p{
+    font-family: 'Open Sans', Arial, sans-serif;
+    text-align: left;
 }
