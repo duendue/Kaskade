@@ -19,7 +19,6 @@
             <button style="width:15%">Forskudsopgørelse</button>
         </div>
     </header>
-
     <div class="wrapper">
         <div class="finanslov">
             <h2>Finanslov</h2>
@@ -89,6 +88,26 @@
                 </div>
 
                 <script>
+                    function getParams(){
+                        var idx = document.URL.indexOf('?');
+                        var params = new Array();
+                        if (idx != -1) {
+                            var pairs = document.URL.substring(idx+1, document.URL.length).split('&');
+                            for (var i=0; i<pairs.length; i++){
+                                nameVal = pairs[i].split('=');
+                                params[nameVal[0]] = nameVal[1];
+                            }
+                        }
+                        return params;
+                    }
+                    params = getParams();
+                    navn = unescape(params["firstname"]);
+                    gender = unescape(params["gender"]);
+                    indkomst = unescape(params["indkomst"]);
+
+                    document.getElementById("indkomst").innerText = indkomst;
+
+
                     Skat();
 
                     function Skat(){
@@ -434,98 +453,6 @@
                         input.addEventListener('input', maxReached );
                     });
                 </script>
-
-                    <script>
-                        function myFunction(){
-
-                        }
-
-
-
-                        function updateConfigByMutating(sliderLabel) {
-                        }
-                        /*
-                            let currentSliderValue = parseInt(document.getElementById("myRange").value);
-                            let chart = document.getElementById("myChart");
-
-                            console.log(myPieChart.chart.chart.data);
-
-                            let totalValue = 0;
-                            for(let i in myPieChart.chart.chart.data.datasets[0].data){
-                                let data = parseInt(myPieChart.chart.data.datasets[0].data[i]);
-                                if(sliderLabel === myPieChart.chart.data.labels[i]){
-                                    continue;
-                                }
-                                totalValue = totalValue + data;
-                            }
-
-                            if(currentSliderValue + totalValue > 100){
-                                console.log("Value Too High!");
-                                document.getElementById("myRange").disabled = true;
-                            }
-
-                            //myPieChart.update();
-
-
-
-
-
-
-
-
-
-
-                            /*
-                            let earlierSliderValue = myPieChart.chart.data.datasets[0].data[0];
-                            let totalValue = currentSliderValue;
-
-                            console.log("sliderValue: " + currentSliderValue);
-
-                            while(totalValue < 100){
-                                for(let i in myPieChart.chart.data.datasets[0].data){
-                                    let data = parseInt(myPieChart.chart.data.datasets[0].data[i]);
-                                    console.log("data: " + data);
-                                    let procentMod = 100;
-                                    let procent = 0;
-                                    while(procent === 0){
-                                        console.log("procent: " + procent + " // data: " + data + " // procentMod: " + procentMod);
-                                        procent = (data / procentMod);
-                                        procentMod--;
-                                    }
-                                    console.log("procent: " + procent);
-
-                                    if(myPieChart.chart.data.labels[i] === "Social Beskyttelse"){
-                                        myPieChart.chart.data.datasets[0].data[i] = currentSliderValue;
-                                    }else{
-                                        if(earlierSliderValue < currentSliderValue){
-                                            console.log("Decreasing other Values...");
-                                            data = data + procent;
-                                            myPieChart.chart.data.datasets[0].data[i] = data;
-                                        }else if(earlierSliderValue > currentSliderValue){
-                                            console.log("Increasing other Values...");
-                                            data = data - procent;
-                                            myPieChart.chart.data.datasets[0].data[i] = data;
-                                        }else{
-                                            console.log("Values are the same...");
-                                        }
-                                        console.log("data: " + data);
-
-                                        totalValue = totalValue + data;
-
-                                        if(totalValue > 100){
-                                            totalValue = totalValue - data;
-                                            break;
-                                        }else{
-                                            myPieChart.update();
-                                        }
-                                    }
-                                }
-                            }
-                        }*/
-
-                    </script>
-                </div>
-
             </div>
         </div>
     </div>

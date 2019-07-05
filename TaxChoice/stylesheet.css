@@ -170,3 +170,8 @@ input[type=submit]:hover {
     padding: 20px;
     width: 80%;
 }
+
+.kaskade {
+    position: absolute;
+    right: 500px;
+}
