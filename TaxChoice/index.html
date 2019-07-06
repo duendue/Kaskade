@@ -163,7 +163,7 @@
                                 Social beskyttelse indebærer støtte til især kommunale - velfærdsforanstaltninger, hvor børn og familier samt syge og gamle
                                 modtager hjælp i form af forebyggende tiltag, institutioner og kontante ydelser.
                             </p>
-                                <input type="range" min="1" max="100" value="44" class="slider" id="SocialBeskyttelse">
+                                <input type="range" min="0" max="100" value="44" class="slider" id="SocialBeskyttelse">
 
                                <p style="text-align: center">
                                    <span>Du kommer til at betale </span><span id="SocialB"></span><span> kr. til Social Beskyttelse</span>
@@ -182,7 +182,7 @@
                         document.getElementById("SBKnap").innerHTML = procent + "%";
 
                         if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
-                            document.getElementById("SocialBeskyttelse").addEventListener('touchmove', function(evt){
+                            document.getElementById("SocialBeskyttelse").addEventListener('touchmove', function(){
                                 document.getElementById("SBKnap").innerHTML = procent + "%";
                                 let skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
                                 let del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
@@ -208,7 +208,7 @@
                                 Sundhedsvæsen indebærer regionernes udgifter til sygehuse, praktiserende læger, tandlæger, sygesikring, apparater, udstyr og medicin.
                             </p>
 
-                            <input type="range" min="1" max="100" value="15" class="slider" id="Sundhedsvæsen">
+                            <input type="range" min="0" max="100" value="15" class="slider" id="Sundhedsvæsen">
 
                             <p style="text-align: center">
                                 <span>Du kommer til at betale </span><span id="SundhedsvæsenSkat"></span><span> kr. til Sundhedsvæsenet</span>
@@ -242,7 +242,7 @@
                             <p>
                                 Undervisning dækker over kommunernes og statens udgifter til undervisning fra 0. klasse til universitetsgrad.
                             </p>
-                            <input type="range" min="1" max="100" value="14" class="slider" id="Undervisning">
+                            <input type="range" min="0" max="100" value="14" class="slider" id="Undervisning">
                             <p style="text-align: center">
                                 <span>Du kommer til at betale </span><span id="UndervisningSkat"></span><span> kr. til Undervisning</span>                            </p>
                             </p>
@@ -275,7 +275,7 @@
                                 Generelle Offentlige Tjenester indebærer offentlige tjenesteydelser, som stilles gratis til rådighed for kollektivet og
                                 dermed ikke fungerer på markedsvilkår, f.eks. folketinget, skattevæsen, finans- og udenrigstjeneste, u-landsbistand m.m.
                             </p>
-                            <input type="range" min="1" max="100" value="13" class="slider" id="GenerelleOffentligeTjenester">
+                            <input type="range" min="0" max="100" value="13" class="slider" id="GenerelleOffentligeTjenester">
                             <p style="text-align: center">
                                 <span>Du kommer til at betale </span><span id="GenerelleOffentligeTjenesterSkat"></span><span> kr. til Generelle Offentlige Tjenester</span>
                             </p>
@@ -309,7 +309,7 @@
                                 Økonomiske Anliggender dækker over udgifter til eksportfremstød, skovbrug, energi, råstofudvinding, bygge- og anlægsarbejder, transport,
                                 kommunikation, landbrugsstøtte m.m.
                             </p>
-                            <input type="range" min="1" max="100" value="6" class="slider" id="ØkonomiskeAnliggender">
+                            <input type="range" min="0" max="100" value="6" class="slider" id="ØkonomiskeAnliggender">
                             <p style="text-align: center">
                                 <span>Du kommer til at betale </span><span id="ØkonomiskeAnliggenderSkat"></span><span> kr. til Økonomiske Anliggender</span>
                             </p>
@@ -342,7 +342,7 @@
                             <p>
                                 Offentlig Orden og Sikkerhed indebærer udgifter til domstole, politi, fængsler, brandvæsen og lign.
                             </p>
-                            <input type="range" min="1" max="100" value="2" class="slider" id="OffentligOrdenOgSikkerhed">
+                            <input type="range" min="0" max="100" value="2" class="slider" id="OffentligOrdenOgSikkerhed">
                             <p style="text-align: center">
                                 <span>Du kommer til at betale </span><span id="OffentligOrdenOgSikkerhedSkat"></span><span> kr. til Offentlig Orden og Sikkerhed</span>
                             </p>
@@ -376,7 +376,7 @@
                             <p>
                                 Forsvaret indebærer udgifter til det militære forsvar: hæren, flyvevåbenet, søværnet og civilforsvaret, som løser nationale og internationale opgaver.
                             </p>
-                            <input type="range" min="1" max="100" value="2" class="slider" id="Forsvar">
+                            <input type="range" min="0" max="100" value="2" class="slider" id="Forsvar">
                             <p style="text-align: center">
                                 <span>Du kommer til at betale </span><span id="ForsvarSkat"></span><span> kr. til Forsvar</span>
                             </p>
@@ -410,7 +410,7 @@
                                 Fritid, Kultur & Religion indebærer statens og kommunernes tilskud til sports- og fritidsklubber,
                                 kunst- og kulturinstitutioner, radio, TV og religiøse organisationer.
                             </p>
-                            <input type="range" min="1" max="100" value="3" class="slider" id="FritidKulturOgReligion">
+                            <input type="range" min="0" max="100" value="3" class="slider" id="FritidKulturOgReligion">
                             <p style="text-align: center">
                                 <span>Du kommer til at betale </span><span id="FritidKulturOgReligionSkat"></span><span> kr. til Fritid, Kultur og Religion</span>
 
@@ -442,7 +442,7 @@
                             <p>
                                 Miljø indebærer håndtering af affald, spildevand, forurening samt natur- og miljøbeskyttelse.
                             </p>
-                            <input type="range" min="1" max="100" value="1" class="slider" id="Miljø">
+                            <input type="range" min="0" max="100" value="1" class="slider" id="Miljø">
                             <p style="text-align: center">
                                 <span>Du kommer til at betale </span><span id="MiljøSkat"></span><span> kr. til Miljø</span>
                             </p>
