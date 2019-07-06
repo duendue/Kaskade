@@ -190,7 +190,7 @@
                         }
 
                         document.getElementById("SocialBeskyttelse").addEventListener(deviceEventType, function(){
-                            let procent = document.getElementById("Sundhedsvæsen").value;
+                            let procent = document.getElementById("SocialBeskyttelse").value;
                             document.getElementById("SBKnap").innerHTML = procent + "%";
                             let skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
                             let del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
