@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -26,7 +27,7 @@
                 <div id="årtal">
                     <div id="idag">2019</div>
                 </div>
-                <ul class="år">
+                <div class="år">
                     <br>
 
                     <div class="left-div">
@@ -99,11 +100,11 @@
                                         }
                                     });
                                 </script>
+                                <p style="font-family: 'Open Sans', Arial, sans-serif; text-align: center;">Dette er hvorledes du har fordelt din skat.</p>
                             </div>
-                            <p style="font-family: 'Open Sans', Arial, sans-serif; text-align: center">Dette er hvorledes du har fordelt din skat.</p>
                         </div>
                     </div>
-
+<br>
                     <script>
                         function getParams(){
                             var idx = document.URL.indexOf('?');
@@ -119,8 +120,9 @@
                         }
                         params = getParams();
                         navn = unescape(params["firstname"]);
-                        gender = unescape(params["gender"]);
                         indkomst = unescape(params["indkomst"]);
+
+                        navn = navn.replace(/\+/g, " ");
 
                         document.getElementById("indkomst").innerText = indkomst;
                         document.getElementById("navn").innerText = navn;
