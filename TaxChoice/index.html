@@ -177,18 +177,28 @@
                     <script>
                         let procent = document.getElementById("SocialBeskyttelse").value;
                         let skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
-                        console.log(skatIndkomst)
                         let del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
                         document.getElementById("SocialB").innerHTML = del;
                         document.getElementById("SBKnap").innerHTML = procent + "%";
 
-                        document.getElementById("SocialBeskyttelse").addEventListener("click", function(){
-                            let procent = document.getElementById("SocialBeskyttelse").value;
-                            document.getElementById("SBKnap").innerHTML = procent + "%";
-                            let skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
-                            let del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
-                            document.getElementById("SocialB").innerHTML = del;
-                        });
+                        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
+                            document.getElementById("SocialBeskyttelse").attachEvent('onclick', function(){
+                                console.log("test");
+                                document.getElementById("SBKnap").innerHTML = procent + "%";
+                                let skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
+                                let del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
+                                document.getElementById("SocialB").innerHTML = del;
+                            });
+                        }else{
+                            document.getElementById("SocialBeskyttelse").addEventListener("click", function(){
+                                console.log("Running!");
+                                let procent = document.getElementById("SocialBeskyttelse").value;
+                                document.getElementById("SBKnap").innerHTML = procent + "%";
+                                let skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
+                                let del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
+                                document.getElementById("SocialB").innerHTML = del;
+                            });
+                        }
 
                     </script>
 
@@ -211,12 +221,11 @@
                     <script>
                         procent = document.getElementById("Sundhedsvæsen").value;
                         skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
-                        console.log(skatIndkomst)
                         del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
                         document.getElementById("SundhedsvæsenSkat").innerHTML = del;
                         document.getElementById("SHKnap").innerHTML = procent + "%";
 
-                        document.getElementById("Sundhedsvæsen").addEventListener("click", function(){
+                        document.getElementById("Sundhedsvæsen").addEventListener("onclick", function(){
                             let procent = document.getElementById("Sundhedsvæsen").value;
                             document.getElementById("SHKnap").innerHTML = procent + "%";
                             let skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
@@ -244,12 +253,11 @@
                     <script>
                         procent = document.getElementById("Undervisning").value;
                         skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
-                        console.log(skatIndkomst)
                         del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
                         document.getElementById("UndervisningSkat").innerHTML = del;
                         document.getElementById("UKnap").innerHTML = procent + "%";
 
-                        document.getElementById("Undervisning").addEventListener("click", function(){
+                        document.getElementById("Undervisning").addEventListener("onclick", function(){
                             let procent = document.getElementById("Undervisning").value;
                             document.getElementById("UKnap").innerHTML = procent + "%";
                             let skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
@@ -283,7 +291,7 @@
                         document.getElementById("GenerelleOffentligeTjenesterSkat").innerHTML = del;
                         document.getElementById("GOTKnap").innerHTML = procent + "%";
 
-                        document.getElementById("GenerelleOffentligeTjenester").addEventListener("click", function(){
+                        document.getElementById("GenerelleOffentligeTjenester").addEventListener("onclick", function(){
                             let procent = document.getElementById("GenerelleOffentligeTjenester").value;
                             document.getElementById("GOTKnap").innerHTML = procent + "%";
                             let skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
@@ -319,7 +327,7 @@
                         del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
                         document.getElementById("ØkonomiskeAnliggenderSkat").innerHTML = del;
 
-                        document.getElementById("ØkonomiskeAnliggender").addEventListener("click", function(){
+                        document.getElementById("ØkonomiskeAnliggender").addEventListener("onclick", function(){
                             let procent = document.getElementById("ØkonomiskeAnliggender").value;
                             document.getElementById("OAKnap").innerHTML = procent + "%";
                             let skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
@@ -351,7 +359,7 @@
                         del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
                         document.getElementById("OffentligOrdenOgSikkerhedSkat").innerHTML = del;
 
-                        document.getElementById("OffentligOrdenOgSikkerhed").addEventListener("click", function(){
+                        document.getElementById("OffentligOrdenOgSikkerhed").addEventListener("onclick", function(){
                             let procent = document.getElementById("OffentligOrdenOgSikkerhed").value;
                             document.getElementById("OOSKnap").innerHTML = procent + "%";
                             let skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
@@ -381,11 +389,10 @@
                         procent = document.getElementById("Forsvar").value;
                         document.getElementById("FKnap").innerHTML = procent + "%";
                         skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
-                        console.log(skatIndkomst)
                         del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
                         document.getElementById("ForsvarSkat").innerHTML = del;
 
-                        document.getElementById("Forsvar").addEventListener("click", function(){
+                        document.getElementById("Forsvar").addEventListener("onclick", function(){
                             let procent = document.getElementById("Forsvar").value;
                             document.getElementById("FKnap").innerHTML = procent + "%";
                             let skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
@@ -415,11 +422,10 @@
                         procent = document.getElementById("FritidKulturOgReligion").value;
                         document.getElementById("FKRKnap").innerHTML = procent + "%";
                         skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
-                        console.log(skatIndkomst)
                         del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
                         document.getElementById("FritidKulturOgReligionSkat").innerHTML = del;
 
-                        document.getElementById("FritidKulturOgReligion").addEventListener("click", function(){
+                        document.getElementById("FritidKulturOgReligion").addEventListener("onclick", function(){
                             let procent = document.getElementById("FritidKulturOgReligion").value;
                             document.getElementById("FKRKnap").innerHTML = procent + "%";
                             let skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
@@ -450,11 +456,10 @@
                         procent = document.getElementById("Miljø").value;
                         document.getElementById("MKnap").innerHTML = procent + "%";
                         skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
-                        console.log(skatIndkomst)
                         del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
                         document.getElementById("MiljøSkat").innerHTML = del;
 
-                        document.getElementById("Miljø").addEventListener("click", function(){
+                        document.getElementById("Miljø").addEventListener("onclick", function(){
                             let procent = document.getElementById("Miljø").value;
                             document.getElementById("MKnap").innerHTML = procent + "%";
                             let skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
@@ -490,10 +495,8 @@
                             getTotal = function(){
                                 let totalValue = 0;
                                 inputs.forEach( function(input){
-                                    console.log(input);
                                     totalValue += parseInt(input.value, 10);
                                 });
-                                console.log(totalValue);
                                 return totalValue;
                             },
                             maxReached = function(e){
@@ -506,7 +509,6 @@
                                 }
                                 //e.addEventListener('mouseout', cancelTip);
                                 let overskud = 100 - sum;
-                                console.log(overskud);
 
                                 myPieChart.chart.chart.data.datasets[0].data[0] = parseInt(document.getElementById("SocialBeskyttelse").value);
                                 myPieChart.chart.chart.data.datasets[0].data[1] = parseInt(document.getElementById("Sundhedsvæsen").value);

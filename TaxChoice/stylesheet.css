@@ -325,7 +325,7 @@ input[type=submit]:hover {
     display: none;
     overflow: hidden;
     position: relative;
-    left: 13px;
+    left: 32px;
     width: 52.1%;
 }
 
@@ -348,10 +348,15 @@ p{
         display: none;
     }
 
-    .panel, .accordion{
+    .accordion{
         right: 0;
         left: 0;
         width: 100%;
+    }
+    .panel{
+        right:0;
+        left:0;
+        width: auto;
     }
 
     #infotekst{
