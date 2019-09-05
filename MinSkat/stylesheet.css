@@ -1,0 +1,415 @@
+#infotekst{
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-size: 1.5vw;
+    line-height: 25px;
+    text-align: left;
+}
+
+.left-div {
+    float: left;
+    width: 50%;
+    height: 400px;
+    margin-right: 8px;
+    margin-left: 15px;
+}
+
+#stickyContainer{
+    position: absolute;
+    width: 50%;
+    height: 90%;
+    left: 50%;
+}
+
+.right-div {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 100px;
+    margin-left: 108px;
+}​
+
+.tekst {
+    top: 100px;
+    display: inline;
+    white-space: nowrap;
+}
+
+.slidecontainer {
+    width: 100%; /* Width of the outside container */
+}
+
+.overskrift{
+    width: 100%;
+    height: 90.99px;
+    background-color: #14143c;
+    font-family: 'Open Sans',Arial,sans-serif;
+    color: white;
+    font-weight: bold;
+    font-size: 25px;
+    position: relative;
+    display: inline-block;
+    text-align: center;
+}
+
+.h1{
+    font-family: 'Open Sans',Arial,sans-serif;
+    display: inline-block;
+    margin: auto;
+}
+
+#årtal{
+    position: relative;
+    top: 70px;
+    width: 80px;
+    height: 40px;
+    background-color: #f5f5f5;
+    display:block;
+    text-align: center;
+}
+
+#idag{
+    position: relative;
+    top:10px;
+    font-weight: bold;
+    font-family: 'Open Sans',Arial,sans-serif;
+}
+
+hr{
+    stroke: #4CAF50;
+    display: block;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 0.2px;
+}
+
+.menu-group{
+    width: 100%;
+    height: 56.8px;
+    background-color: #14143c;
+}
+
+.menu-group button{
+    width: 100%;
+    height: 40px;
+    background-color: #14143c;
+    color: white;
+    font-size: 16px;
+    border: #14143c;
+    padding: 10px 15px;
+    cursor: pointer;
+    float: left;
+    font-family: 'Open Sans',Arial,sans-serif;
+    display: block;
+    position: relative;
+    padding-bottom: 1.8rem;
+    padding-left: .9em;
+    padding-top: 1.7rem;
+}
+
+.-group button:not(:last-child) {
+    border-right: none; /* Prevent double borders */
+}
+
+/* Clear floats (clearfix hack) */
+.menu-group:after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Add a background color on hover */
+.menu-group button:hover {
+    background-color: #464665;
+}
+
+.wrapper{
+    text-align:center;
+    border-radius: 25px;
+    position: relative;
+    top: 50px;
+    left: 1%;
+    width: 98%;
+    height: 110%;
+    display:inline-block;
+    background-color: lightgrey;
+}
+
+.finanslov{
+    border-radius: 25px;
+    position: relative;
+    top: 2px;
+    height: 99.5%;
+    width: 99.6%;
+    display:inline-block;
+    background-color: #e9ecf7;
+}
+
+.finanslov h2{
+    font-family: 'Open Sans',Arial,sans-serif;
+    position: absolute; left: 25px;
+}
+
+.år{
+
+    position: relative; top: 60px;
+    width: 100%;
+    height: 20%;
+    display:inline-block;
+    background-color: #f5f5f5;
+}
+
+#bund{
+    border-radius: 25px;
+    position: relative;
+    background-color: #f5f5f5;
+    alignment: bottom;
+    width: 100%;
+    height: 46px;
+    top: 30px;
+}
+
+.diagram{
+    position: -webkit-sticky;
+    position: sticky;
+    width: 50%;
+    display:inline-block;
+    top: 100px;
+}
+
+h2{
+    display: block;
+}
+
+.empty{
+    height: 50px
+}
+
+.skatDel{
+    position: relative;
+    display: block;
+    top: 55px;
+    font-family: 'Open Sans', Arial, sans-serif;
+}
+
+.sliderWrapper{
+    position: relative;
+    display: block;
+    top: 50px;
+}
+
+/* The slider itself */
+.slider {
+    display: inline-block;
+    border-radius: 15px;
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 90%; /* Full-width */
+    height: 25px; /* Specified height */
+    background: rgba(200, 200, 200, 5); /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+    border-radius: 25px;
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #4CAF50; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+    content: "test";
+}
+
+.slider::-moz-range-thumb {
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #4CAF50; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+}
+
+
+
+/* Style inputs with type="text", select elements and textareas */
+input[type=text], select, textarea {
+    width: 100%; /* Full width */
+    padding: 12px; /* Some padding */
+    border: 1px solid #ccc; /* Gray border */
+    border-radius: 4px; /* Rounded borders */
+    box-sizing: border-box; /* Make sure that padding and width stays in place */
+    margin-top: 6px; /* Add a top margin */
+    margin-bottom: 16px; /* Bottom margin */
+    resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+}
+
+/* Style the submit button with a specific background color etc */
+input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* When moving the mouse over the submit button, add a darker green color */
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+/* Add a background color and some padding around the form */
+.container {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    width: 100%;
+}
+
+#formWrapper{
+    position: relative;
+    display: inline-block;
+    width: 80%;
+    left: 10%;
+    top: 150px;
+}
+
+#kaskade {
+    position: relative;
+    text-align: right;
+    right: 55px;
+    top: 100px;
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+#fod{
+    position: relative;
+    top: 150px;
+    background-color: #14143c;
+    height: 200px;
+    width: 100%;
+    color: darkblue;
+}
+
+/* Style the button that is used to open and close the collapsible content */
+/* some simple demo styles for all collapsibles on this page */
+/* source: http://www.ehow.com/how_12214447_make-collapsing-lists-java.html */
+/* Style the buttons that are used to open and close the accordion panel */
+
+.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 55%;
+    position: relative;
+    right: 20%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .accordion:hover {
+    background-color: #ccc;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.panel {
+    padding: 0 18px;
+    background-color: white;
+    display: none;
+    overflow: hidden;
+    position: relative;
+    left: 32px;
+    width: 52.1%;
+}
+
+p{
+    font-family: 'Open Sans', Arial, sans-serif;
+    text-align: left;
+}
+
+@media screen and (max-width: 800px) {
+    #formWrapper{
+        position: relative;
+        width: 100%;
+        left: 0;
+        top: 150px;
+    }
+
+    .container{
+        width: 92.5%;
+        border-radius: 0;
+    }
+
+    #myform{
+        width: 100%;
+    }
+
+
+    .wrapper, .finanslov .år{
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+    }
+    .wrapper, .finanslov{
+        background-color: white;
+    }
+    .finanslov h2, .menu-group{
+        display: none;
+    }
+
+    .accordion{
+        right: 0;
+        left: 0;
+        width: 100%;
+    }
+    .panel{
+        right:0;
+        left:0;
+        width: auto;
+    }
+
+    #infotekst{
+        font-size: 22px;
+    }
+    .left-div {
+        width: 95%;
+        height: auto;
+        margin-right: 8px;
+        margin-left: 15px;
+        display: inline-block;
+    }
+
+    #stickyContainer{
+        width: 100%;
+        left: 0;
+        position: relative;
+        height: auto;
+    }
+
+    .right-div {
+        width: 100%;
+        top: 0;
+        margin-left: 0;
+        display: inline-block;
+        position: relative;
+        height: 0;
+    }​
+
+
+}
