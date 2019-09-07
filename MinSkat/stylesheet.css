@@ -243,6 +243,10 @@ h2{
     opacity: 1; /* Fully shown on mouse-over */
 }
 
+#importer:hover{
+    background-color: #45a049;
+}
+
 /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
 .slider::-webkit-slider-thumb {
     border-radius: 25px;

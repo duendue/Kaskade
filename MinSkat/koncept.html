@@ -42,11 +42,51 @@
                                 <br><br>
                                 De nedenstående afsnit repræsenterer de forskellige områder i samfundet som din skat bliver fordelt ud til.
                                 Brug de tilhørende sliders til at justere hvordan du vil have din skat skal fordeles.
-                                De nuværende satser er bestemt af den siddende regering. Der skal minimum bestemmes 90% af skatten. Overskudet går til at afbetale
+                                Der skal minimum bestemmes 90% af skatten. Overskudet går til at afbetale
                                 statens lån.
                                 <br><br>
                                 Til højre kan du se en grafisk repræsentation af fordelingen af din skat.
+                                <br><br>
+                                Hvis du ønsker at at din skat automatisk skal fordeles efter den siddende regerings finanslov så tryk  <button id="importer" type="button" style="background-color: #4CAF50; color: white; padding: 5px 30px; border: none; border-radius: 4px; cursor: pointer;">Her</button>
                             </p>
+
+                            <script>
+                                document.getElementById("importer").addEventListener('click', function(){
+                                    console.log("Click!")
+
+                                    myPieChart.chart.chart.data.datasets[0].data[0] = 44;
+                                    myPieChart.chart.chart.data.datasets[0].data[1] = 15;
+                                    myPieChart.chart.chart.data.datasets[0].data[2] = 14;
+                                    myPieChart.chart.chart.data.datasets[0].data[3] = 13;
+                                    myPieChart.chart.chart.data.datasets[0].data[4] = 6;
+                                    myPieChart.chart.chart.data.datasets[0].data[5] = 2;
+                                    myPieChart.chart.chart.data.datasets[0].data[6] = 2;
+                                    myPieChart.chart.chart.data.datasets[0].data[7] = 3;
+                                    myPieChart.chart.chart.data.datasets[0].data[8] = 1;
+                                    myPieChart.chart.chart.data.datasets[0].data[9] = 0;
+                                    myPieChart.update();
+
+                                    document.getElementById("SocialBeskyttelse").value = 44;
+                                    document.getElementById("Sundhedsvæsen").value = 15;
+                                    document.getElementById("Undervisning").value = 14;
+                                    document.getElementById("GenerelleOffentligeTjenester").value = 13;
+                                    document.getElementById("ØkonomiskeAnliggender").value = 6;
+                                    document.getElementById("OffentligOrdenOgSikkerhed").value = 2;
+                                    document.getElementById("Forsvar").value = 2;
+                                    document.getElementById("FritidKulturOgReligion").value = 3;
+                                    document.getElementById("Miljø").value = 1;
+                                    SocialBeskyttelse();
+                                    Sundhedsvæsen();
+                                    Undervisning();
+                                    GenerelleOffentligeTjenester();
+                                    ØkonomiskeAnliggender();
+                                    OffentligOrdenOgSikkerhed();
+                                    Forsvar();
+                                    FritidKulturOgReligion();
+                                    Miljø();
+                                });
+
+                            </script>
 
 
                         </div>
@@ -62,7 +102,8 @@
                                             type: 'pie',
                                             data: {
                                                 datasets: [{
-                                                    data:    [44, 15, 14, 13, 6, 2, 2, 3, 1, 0],
+                                                    data:    [0, 0, 0, 0, 0, 0, 0, 0, 0, 100],
+                                                    //[44, 15, 14, 13, 6, 2, 2, 3, 1, 0],
                                                     backgroundColor: [
                                                         'rgba(245, 130, 48, 0.5)',
                                                         'rgba(230, 25, 75, 0.5)',
@@ -158,7 +199,7 @@
                             }
                         </script>
 
-                        <button class="accordion" style="font-family: 'Open Sans', Arial, sans-serif; font-weight: bold; font-size: 22px;">> Social Beskyttelse - <span id="SocialBeskyttelseKnap"></span> <div id="SocialBeskyttelseFarve" style="position: absolute; left: 80%; display: inline-block; width: 25px; height: 25px; background-color: rgba(245, 130, 48, 0.5)"></div></button>
+                        <button class="accordion" style="font-family: 'Open Sans', Arial, sans-serif; font-weight: bold; font-size: 22px;">> Social Beskyttelse - <span id="SocialBeskyttelseKnap"></span> <div id="SocialBeskyttelseFarve" style="position: absolute; left: 93%; display: inline-block; width: 25px; height: 25px; background-color: rgba(245, 130, 48, 0.5)"></div></button>
 
                         <div class="panel">
                             <div class="category">
@@ -166,7 +207,7 @@
                                     Social beskyttelse indebærer støtte til især kommunale - velfærdsforanstaltninger, hvor børn og familier samt syge og gamle
                                     modtager hjælp i form af forebyggende tiltag, institutioner og kontante ydelser.
                                 </p>
-                                <input type="range" min="0" max="100" value="44" class="slider" id="SocialBeskyttelse">
+                                <input type="range" min="0" max="100" value="0" class="slider" id="SocialBeskyttelse">
 
                                 <p style="text-align: center">
                                     <span>Du kommer til at betale </span><span id="SocialBeskyttelseSkat"></span><span> kr. til Social Beskyttelse</span>
@@ -178,37 +219,40 @@
                         <br><br>
 
                         <script>
-                            let procent = document.getElementById("SocialBeskyttelse").value;
-                            let skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
-                            let del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
-                            document.getElementById("SocialBeskyttelseSkat").innerHTML = del;
-                            document.getElementById("SocialBeskyttelseKnap").innerHTML = procent + "%";
-
-                            if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-                                console.log("Mobile");
-                                deviceEventType = 'touchmove';
-                            } else {
-                                console.log("Computer");
-                                deviceEventType = 'input';
-                            }
-
-                            document.getElementById("SocialBeskyttelse").addEventListener(deviceEventType, function(){
+                            SocialBeskyttelse();
+                            function SocialBeskyttelse(){
                                 let procent = document.getElementById("SocialBeskyttelse").value;
-                                document.getElementById("SocialBeskyttelseKnap").innerHTML = procent + "%";
                                 let skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
                                 let del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
                                 document.getElementById("SocialBeskyttelseSkat").innerHTML = del;
-                            });
+                                document.getElementById("SocialBeskyttelseKnap").innerHTML = procent + "%";
+
+                                if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+                                    console.log("Mobile");
+                                    deviceEventType = 'touchmove';
+                                } else {
+                                    console.log("Computer");
+                                    deviceEventType = 'input';
+                                }
+
+                                document.getElementById("SocialBeskyttelse").addEventListener(deviceEventType, function(){
+                                    let procent = document.getElementById("SocialBeskyttelse").value;
+                                    document.getElementById("SocialBeskyttelseKnap").innerHTML = procent + "%";
+                                    let skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
+                                    let del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
+                                    document.getElementById("SocialBeskyttelseSkat").innerHTML = del;
+                                });
+                            }
                         </script>
 
-                        <button class="accordion" style="font-family: 'Open Sans', Arial, sans-serif; font-weight: bold; font-size: 22px;">> Sundhedsvæsen - <span id="SundhedsvæsenKnap"></span><div id="SundhedsvæsenFarve" style="position: absolute; left: 80%; display: inline-block; width: 25px; height: 25px; background-color: rgba(230, 25, 75, 0.5)"></div></button>
+                        <button class="accordion" style="font-family: 'Open Sans', Arial, sans-serif; font-weight: bold; font-size: 22px;">> Sundhedsvæsen - <span id="SundhedsvæsenKnap"></span><div id="SundhedsvæsenFarve" style="position: absolute; left: 93%; display: inline-block; width: 25px; height: 25px; background-color: rgba(230, 25, 75, 0.5)"></div></button>
                         <div class="panel">
                             <div class="category">
                                 <p>
                                     Sundhedsvæsen indebærer regionernes udgifter til sygehuse, praktiserende læger, tandlæger, sygesikring, apparater, udstyr og medicin.
                                 </p>
 
-                                <input type="range" min="0" max="100" value="15" class="slider" id="Sundhedsvæsen">
+                                <input type="range" min="0" max="100" value="0" class="slider" id="Sundhedsvæsen">
 
                                 <p style="text-align: center">
                                     <span>Du kommer til at betale </span><span id="SundhedsvæsenSkat"></span><span> kr. til Sundhedsvæsenet</span>
@@ -218,31 +262,33 @@
                         </div>
 
                         <script>
-                            procent = document.getElementById("Sundhedsvæsen").value;
-                            skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
-                            del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
-                            document.getElementById("SundhedsvæsenSkat").innerHTML = del;
-                            document.getElementById("SundhedsvæsenKnap").innerHTML = procent + "%";
-
-                            document.getElementById("Sundhedsvæsen").addEventListener(deviceEventType, function(){
-                                let procent = document.getElementById("Sundhedsvæsen").value;
-                                document.getElementById("SundhedsvæsenKnap").innerHTML = procent + "%";
-                                let skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
-                                let del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
+                            Sundhedsvæsen();
+                            function Sundhedsvæsen(){
+                                procent = document.getElementById("Sundhedsvæsen").value;
+                                skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
+                                del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
                                 document.getElementById("SundhedsvæsenSkat").innerHTML = del;
-                            });
+                                document.getElementById("SundhedsvæsenKnap").innerHTML = procent + "%";
 
+                                document.getElementById("Sundhedsvæsen").addEventListener(deviceEventType, function(){
+                                    let procent = document.getElementById("Sundhedsvæsen").value;
+                                    document.getElementById("SundhedsvæsenKnap").innerHTML = procent + "%";
+                                    let skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
+                                    let del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
+                                    document.getElementById("SundhedsvæsenSkat").innerHTML = del;
+                                });
+                            }
                         </script>
 
                         <br><br>
 
-                        <button class="accordion" style="font-family: 'Open Sans', Arial, sans-serif; font-weight: bold; font-size: 22px;">> Undervisning - <span id="UndervisningKnap"></span> <div id="UndervisningFarve" style="position: absolute; left: 80%; display: inline-block; width: 25px; height: 25px; background-color: rgba(255, 255, 0, 0.5)"></div></button>
+                        <button class="accordion" style="font-family: 'Open Sans', Arial, sans-serif; font-weight: bold; font-size: 22px;">> Undervisning - <span id="UndervisningKnap"></span> <div id="UndervisningFarve" style="position: absolute; left: 93%; display: inline-block; width: 25px; height: 25px; background-color: rgba(255, 255, 0, 0.5)"></div></button>
                         <div class="panel">
                             <div class="category">
                                 <p>
                                     Undervisning dækker over kommunernes og statens udgifter til undervisning fra 0. klasse til universitetsgrad.
                                 </p>
-                                <input type="range" min="0" max="100" value="14" class="slider" id="Undervisning">
+                                <input type="range" min="0" max="100" value="0" class="slider" id="Undervisning">
                                 <p style="text-align: center">
                                     <span>Du kommer til at betale </span><span id="UndervisningSkat"></span><span> kr. til Undervisning</span>                            </p>
                                 </p>
@@ -250,32 +296,34 @@
                         </div>
 
                         <script>
-                            procent = document.getElementById("Undervisning").value;
-                            skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
-                            del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
-                            document.getElementById("UndervisningSkat").innerHTML = del;
-                            document.getElementById("UndervisningKnap").innerHTML = procent + "%";
-
-                            document.getElementById("Undervisning").addEventListener(deviceEventType, function(){
-                                let procent = document.getElementById("Undervisning").value;
-                                document.getElementById("UndervisningKnap").innerHTML = procent + "%";
-                                let skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
-                                let del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
+                            Undervisning();
+                            function Undervisning(){
+                                procent = document.getElementById("Undervisning").value;
+                                skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
+                                del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
                                 document.getElementById("UndervisningSkat").innerHTML = del;
-                            });
+                                document.getElementById("UndervisningKnap").innerHTML = procent + "%";
 
+                                document.getElementById("Undervisning").addEventListener(deviceEventType, function(){
+                                    let procent = document.getElementById("Undervisning").value;
+                                    document.getElementById("UndervisningKnap").innerHTML = procent + "%";
+                                    let skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
+                                    let del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
+                                    document.getElementById("UndervisningSkat").innerHTML = del;
+                                });
+                            }
                         </script>
 
                         <br><br>
 
-                        <button class="accordion" style="font-family: 'Open Sans', Arial, sans-serif; font-weight: bold; font-size: 22px;">> Generelle Offentlige Tjenester - <span id="GenerelleOffentligeTjenesterKnap"></span> <div id="GenerelleOffentligeTjenesterFarve" style="position: absolute; left: 80%; display: inline-block; width: 25px; height: 25px; background-color: rgba(210, 245, 60, 0.5)"></div></button>
+                        <button class="accordion" style="font-family: 'Open Sans', Arial, sans-serif; font-weight: bold; font-size: 22px;">> Generelle Offentlige Tjenester - <span id="GenerelleOffentligeTjenesterKnap"></span> <div id="GenerelleOffentligeTjenesterFarve" style="position: absolute; left: 93%; display: inline-block; width: 25px; height: 25px; background-color: rgba(210, 245, 60, 0.5)"></div></button>
                         <div class="panel">
                             <div class="category">
                                 <p>
                                     Generelle Offentlige Tjenester indebærer offentlige tjenesteydelser, som stilles gratis til rådighed for kollektivet og
                                     dermed ikke fungerer på markedsvilkår, f.eks. folketinget, skattevæsen, finans- og udenrigstjeneste, u-landsbistand m.m.
                                 </p>
-                                <input type="range" min="0" max="100" value="13" class="slider" id="GenerelleOffentligeTjenester">
+                                <input type="range" min="0" max="100" value="0" class="slider" id="GenerelleOffentligeTjenester">
                                 <p style="text-align: center">
                                     <span>Du kommer til at betale </span><span id="GenerelleOffentligeTjenesterSkat"></span><span> kr. til Generelle Offentlige Tjenester</span>
                                 </p>
@@ -283,32 +331,34 @@
                         </div>
 
                         <script>
-                            procent = document.getElementById("GenerelleOffentligeTjenester").value;
-                            skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
-                            del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
-                            document.getElementById("GenerelleOffentligeTjenesterSkat").innerHTML = del;
-                            document.getElementById("GenerelleOffentligeTjenesterKnap").innerHTML = procent + "%";
-
-                            document.getElementById("GenerelleOffentligeTjenester").addEventListener(deviceEventType, function(){
-                                let procent = document.getElementById("GenerelleOffentligeTjenester").value;
-                                document.getElementById("GenerelleOffentligeTjenesterKnap").innerHTML = procent + "%";
-                                let skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
-                                let del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
+                            GenerelleOffentligeTjenester();
+                            function GenerelleOffentligeTjenester(){
+                                procent = document.getElementById("GenerelleOffentligeTjenester").value;
+                                skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
+                                del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
                                 document.getElementById("GenerelleOffentligeTjenesterSkat").innerHTML = del;
-                            });
+                                document.getElementById("GenerelleOffentligeTjenesterKnap").innerHTML = procent + "%";
 
+                                document.getElementById("GenerelleOffentligeTjenester").addEventListener(deviceEventType, function(){
+                                    let procent = document.getElementById("GenerelleOffentligeTjenester").value;
+                                    document.getElementById("GenerelleOffentligeTjenesterKnap").innerHTML = procent + "%";
+                                    let skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
+                                    let del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
+                                    document.getElementById("GenerelleOffentligeTjenesterSkat").innerHTML = del;
+                                });
+                            }
                         </script>
 
                         <br><br>
 
-                        <button class="accordion" style="font-family: 'Open Sans', Arial, sans-serif; font-weight: bold; font-size: 22px;">> Økonomiske Anliggender - <span id="ØkonomiskeAnliggenderKnap"></span><div id="ØkonomiskeAnliggenderFarve" style="position: absolute; left: 80%; display: inline-block; width: 25px; height: 25px; background-color: rgba(0, 130, 200, 0.5)"></div></button>
+                        <button class="accordion" style="font-family: 'Open Sans', Arial, sans-serif; font-weight: bold; font-size: 22px;">> Økonomiske Anliggender - <span id="ØkonomiskeAnliggenderKnap"></span><div id="ØkonomiskeAnliggenderFarve" style="position: absolute; left: 93%; display: inline-block; width: 25px; height: 25px; background-color: rgba(0, 130, 200, 0.5)"></div></button>
                         <div class="panel">
                             <div class="category">
                                 <p>
                                     Økonomiske Anliggender dækker over udgifter til eksportfremstød, skovbrug, energi, råstofudvinding, bygge- og anlægsarbejder, transport,
                                     kommunikation, landbrugsstøtte m.m.
                                 </p>
-                                <input type="range" min="0" max="100" value="6" class="slider" id="ØkonomiskeAnliggender">
+                                <input type="range" min="0" max="100" value="0" class="slider" id="ØkonomiskeAnliggender">
                                 <p style="text-align: center">
                                     <span>Du kommer til at betale </span><span id="ØkonomiskeAnliggenderSkat"></span><span> kr. til Økonomiske Anliggender</span>
                                 </p>
@@ -318,29 +368,31 @@
                         <br><br>
 
                         <script>
-                            procent = document.getElementById("ØkonomiskeAnliggender").value;
-                            document.getElementById("ØkonomiskeAnliggenderKnap").innerHTML = procent + "%";
-                            skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
-                            del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
-                            document.getElementById("ØkonomiskeAnliggenderSkat").innerHTML = del;
-
-                            document.getElementById("ØkonomiskeAnliggender").addEventListener(deviceEventType, function(){
-                                let procent = document.getElementById("ØkonomiskeAnliggender").value;
+                           ØkonomiskeAnliggender();
+                           function ØkonomiskeAnliggender(){
+                                procent = document.getElementById("ØkonomiskeAnliggender").value;
                                 document.getElementById("ØkonomiskeAnliggenderKnap").innerHTML = procent + "%";
-                                let skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
-                                let del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
+                                skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
+                                del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
                                 document.getElementById("ØkonomiskeAnliggenderSkat").innerHTML = del;
-                            });
 
+                                document.getElementById("ØkonomiskeAnliggender").addEventListener(deviceEventType, function(){
+                                    let procent = document.getElementById("ØkonomiskeAnliggender").value;
+                                    document.getElementById("ØkonomiskeAnliggenderKnap").innerHTML = procent + "%";
+                                    let skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
+                                    let del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
+                                    document.getElementById("ØkonomiskeAnliggenderSkat").innerHTML = del;
+                                });
+                           }
                         </script>
 
-                        <button class="accordion" style="font-family: 'Open Sans', Arial, sans-serif; font-weight: bold; font-size: 22px;">> Offentlig Orden og Sikkerhed - <span id="OffentligOrdenOgSikkerhedKnap"></span><div id="OffentligOrdenOgSikkerhedFarve" style="position: absolute; left: 80%; display: inline-block; width: 25px; height: 25px; background-color: rgba(70, 240, 240, 0.5)"></div></button>
+                        <button class="accordion" style="font-family: 'Open Sans', Arial, sans-serif; font-weight: bold; font-size: 22px;">> Offentlig Orden og Sikkerhed - <span id="OffentligOrdenOgSikkerhedKnap"></span><div id="OffentligOrdenOgSikkerhedFarve" style="position: absolute; left: 93%; display: inline-block; width: 25px; height: 25px; background-color: rgba(70, 240, 240, 0.5)"></div></button>
                         <div class="panel">
                             <div class="category">
                                 <p>
                                     Offentlig Orden og Sikkerhed indebærer udgifter til domstole, politi, fængsler, brandvæsen og lign.
                                 </p>
-                                <input type="range" min="0" max="100" value="2" class="slider" id="OffentligOrdenOgSikkerhed">
+                                <input type="range" min="0" max="100" value="0" class="slider" id="OffentligOrdenOgSikkerhed">
                                 <p style="text-align: center">
                                     <span>Du kommer til at betale </span><span id="OffentligOrdenOgSikkerhedSkat"></span><span> kr. til Offentlig Orden og Sikkerhed</span>
                                 </p>
@@ -349,31 +401,33 @@
                         </div>
 
                         <script>
-                            procent = document.getElementById("OffentligOrdenOgSikkerhed").value;
-                            document.getElementById("OffentligOrdenOgSikkerhedKnap").innerHTML = procent + "%";
-                            skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
-                            del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
-                            document.getElementById("OffentligOrdenOgSikkerhedSkat").innerHTML = del;
-
-                            document.getElementById("OffentligOrdenOgSikkerhed").addEventListener(deviceEventType, function(){
-                                let procent = document.getElementById("OffentligOrdenOgSikkerhed").value;
+                            OffentligOrdenOgSikkerhed();
+                            function OffentligOrdenOgSikkerhed(){
+                                procent = document.getElementById("OffentligOrdenOgSikkerhed").value;
                                 document.getElementById("OffentligOrdenOgSikkerhedKnap").innerHTML = procent + "%";
-                                let skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
-                                let del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
+                                skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
+                                del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
                                 document.getElementById("OffentligOrdenOgSikkerhedSkat").innerHTML = del;
-                            });
 
+                                document.getElementById("OffentligOrdenOgSikkerhed").addEventListener(deviceEventType, function(){
+                                    let procent = document.getElementById("OffentligOrdenOgSikkerhed").value;
+                                    document.getElementById("OffentligOrdenOgSikkerhedKnap").innerHTML = procent + "%";
+                                    let skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
+                                    let del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
+                                    document.getElementById("OffentligOrdenOgSikkerhedSkat").innerHTML = del;
+                                });
+                            }
                         </script>
 
                         <br><br>
 
-                        <button class="accordion" style="font-family: 'Open Sans', Arial, sans-serif; font-weight: bold; font-size: 22px;">> Forsvar - <span id="ForsvarKnap"></span><div id="ForsvarFarve" style="position: absolute; left: 80%; display: inline-block; width: 25px; height: 25px; background-color: rgba(10, 75, 50, 0.5)"></div></button>
+                        <button class="accordion" style="font-family: 'Open Sans', Arial, sans-serif; font-weight: bold; font-size: 22px;">> Forsvar - <span id="ForsvarKnap"></span><div id="ForsvarFarve" style="position: absolute; left: 93%; display: inline-block; width: 25px; height: 25px; background-color: rgba(10, 75, 50, 0.5)"></div></button>
                         <div class="panel">
                             <div class="category">
                                 <p>
                                     Forsvaret indebærer udgifter til det militære forsvar: hæren, flyvevåbenet, søværnet og civilforsvaret, som løser nationale og internationale opgaver.
                                 </p>
-                                <input type="range" min="0" max="100" value="2" class="slider" id="Forsvar">
+                                <input type="range" min="0" max="100" value="0" class="slider" id="Forsvar">
                                 <p style="text-align: center">
                                     <span>Du kommer til at betale </span><span id="ForsvarSkat"></span><span> kr. til Forsvar</span>
                                 </p>
@@ -382,32 +436,34 @@
                         </div>
 
                         <script>
-                            procent = document.getElementById("Forsvar").value;
-                            document.getElementById("ForsvarKnap").innerHTML = procent + "%";
-                            skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
-                            del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
-                            document.getElementById("ForsvarSkat").innerHTML = del;
-
-                            document.getElementById("Forsvar").addEventListener(deviceEventType, function(){
-                                let procent = document.getElementById("Forsvar").value;
+                            Forsvar();
+                            function Forsvar(){
+                                procent = document.getElementById("Forsvar").value;
                                 document.getElementById("ForsvarKnap").innerHTML = procent + "%";
-                                let skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
-                                let del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
+                                skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
+                                del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
                                 document.getElementById("ForsvarSkat").innerHTML = del;
-                            });
 
+                                document.getElementById("Forsvar").addEventListener(deviceEventType, function(){
+                                    let procent = document.getElementById("Forsvar").value;
+                                    document.getElementById("ForsvarKnap").innerHTML = procent + "%";
+                                    let skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
+                                    let del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
+                                    document.getElementById("ForsvarSkat").innerHTML = del;
+                                });
+                            }
                         </script>
 
                         <br><br>
 
-                        <button class="accordion" style="font-family: 'Open Sans', Arial, sans-serif; font-weight: bold; font-size: 22px;">> Fritid, Kultur & Religion - <span id="FritidKulturOgReligionKnap"></span><div id="FritidKulturOgReligionFarve" style="position: absolute; left: 80%; display: inline-block; width: 25px; height: 25px; background-color: rgba(145, 30, 180, 0.5)"></div></button>
+                        <button class="accordion" style="font-family: 'Open Sans', Arial, sans-serif; font-weight: bold; font-size: 22px;">> Fritid, Kultur & Religion - <span id="FritidKulturOgReligionKnap"></span><div id="FritidKulturOgReligionFarve" style="position: absolute; left: 93%; display: inline-block; width: 25px; height: 25px; background-color: rgba(145, 30, 180, 0.5)"></div></button>
                         <div class="panel">
                             <div class="category">
                                 <p>
                                     Fritid, Kultur & Religion indebærer statens og kommunernes tilskud til sports- og fritidsklubber,
                                     kunst- og kulturinstitutioner, radio, TV og religiøse organisationer.
                                 </p>
-                                <input type="range" min="0" max="100" value="3" class="slider" id="FritidKulturOgReligion">
+                                <input type="range" min="0" max="100" value="0" class="slider" id="FritidKulturOgReligion">
                                 <p style="text-align: center">
                                     <span>Du kommer til at betale </span><span id="FritidKulturOgReligionSkat"></span><span> kr. til Fritid, Kultur og Religion</span>
 
@@ -415,31 +471,33 @@
                         </div>
 
                         <script>
-                            procent = document.getElementById("FritidKulturOgReligion").value;
-                            document.getElementById("FritidKulturOgReligionKnap").innerHTML = procent + "%";
-                            skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
-                            del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
-                            document.getElementById("FritidKulturOgReligionSkat").innerHTML = del;
-
-                            document.getElementById("FritidKulturOgReligion").addEventListener(deviceEventType, function(){
-                                let procent = document.getElementById("FritidKulturOgReligion").value;
+                            FritidKulturOgReligion();
+                            function FritidKulturOgReligion(){
+                                procent = document.getElementById("FritidKulturOgReligion").value;
                                 document.getElementById("FritidKulturOgReligionKnap").innerHTML = procent + "%";
-                                let skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
-                                let del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
+                                skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
+                                del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
                                 document.getElementById("FritidKulturOgReligionSkat").innerHTML = del;
-                            });
 
+                                document.getElementById("FritidKulturOgReligion").addEventListener(deviceEventType, function(){
+                                    let procent = document.getElementById("FritidKulturOgReligion").value;
+                                    document.getElementById("FritidKulturOgReligionKnap").innerHTML = procent + "%";
+                                    let skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
+                                    let del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
+                                    document.getElementById("FritidKulturOgReligionSkat").innerHTML = del;
+                                });
+                            }
                         </script>
 
                         <br><br>
 
-                        <button class="accordion" style="font-family: 'Open Sans', Arial, sans-serif; font-weight: bold; font-size: 22px;">> Miljø - <span id="MiljøKnap"></span><div id="MiljøFarve" style="position: absolute; left: 80%; display: inline-block; width: 25px; height: 25px; background-color: rgba(0, 255, 0, 0.5)"></div></button>
+                        <button class="accordion" style="font-family: 'Open Sans', Arial, sans-serif; font-weight: bold; font-size: 22px;">> Miljø - <span id="MiljøKnap"></span><div id="MiljøFarve" style="position: absolute; left: 93%; display: inline-block; width: 25px; height: 25px; background-color: rgba(0, 255, 0, 0.5)"></div></button>
                         <div class="panel">
                             <div class="category">
                                 <p>
                                     Miljø indebærer håndtering af affald, spildevand, forurening samt natur- og miljøbeskyttelse.
                                 </p>
-                                <input type="range" min="0" max="100" value="1" class="slider" id="Miljø">
+                                <input type="range" min="0" max="100" value="0" class="slider" id="Miljø">
                                 <p style="text-align: center">
                                     <span>Du kommer til at betale </span><span id="MiljøSkat"></span><span> kr. til Miljø</span>
                                 </p>
@@ -449,20 +507,22 @@
 
 
                         <script>
-                            procent = document.getElementById("Miljø").value;
-                            document.getElementById("MiljøKnap").innerHTML = procent + "%";
-                            skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
-                            del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
-                            document.getElementById("MiljøSkat").innerHTML = del;
-
-                            document.getElementById("Miljø").addEventListener(deviceEventType, function(){
-                                let procent = document.getElementById("Miljø").value;
+                            Miljø();
+                            function Miljø(){
+                                procent = document.getElementById("Miljø").value;
                                 document.getElementById("MiljøKnap").innerHTML = procent + "%";
-                                let skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
-                                let del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
+                                skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
+                                del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
                                 document.getElementById("MiljøSkat").innerHTML = del;
-                            });
 
+                                document.getElementById("Miljø").addEventListener(deviceEventType, function(){
+                                    let procent = document.getElementById("Miljø").value;
+                                    document.getElementById("MiljøKnap").innerHTML = procent + "%";
+                                    let skatIndkomst = document.getElementById("skatIndkomst").innerHTML;
+                                    let del = Math.round(((skatIndkomst/100)*procent)*100) / 100;
+                                    document.getElementById("MiljøSkat").innerHTML = del;
+                                });
+                            }
                         </script>
 
 
@@ -531,8 +591,13 @@
                                 input.addEventListener('input', maxReached );
                             });
                         </script>
-                        <div id="bund">
-
+                        <div id="ButtonWrapper" style="height: 150px; position: relative;">
+                            <div style="position: absolute; top: 20%; left: 10%">
+                                Importer Skattelov
+                            </div>
+                            <div style="position: absolute; top: 20%; right: 10%">
+                                Accepter MinSkat
+                            </div>
                         </div>
                     </div>
                     <br><br><br><br>
